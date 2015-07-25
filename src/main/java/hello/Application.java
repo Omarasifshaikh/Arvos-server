@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class Application {
 
+	//Maximum request size.
+	private static final String MAX_AUGMENT_SIZE = "50MB";
+
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
 
@@ -20,5 +23,4 @@ public class Application {
             System.out.println(beanName);
         }
     }
-
 }

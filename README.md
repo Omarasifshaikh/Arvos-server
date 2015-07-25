@@ -6,3 +6,10 @@ running instructions:
 
 
 Travis CI supported [![Build Status](https://travis-ci.org/Omarasifshaikh/Arvos-server.svg?branch=master)](https://travis-ci.org/Omarasifshaikh/Arvos-server)
+
+
+To test the server through your browser:
+
+`localhost:8080`
+
+`localhost:8080/health`

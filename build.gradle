@@ -1,4 +1,7 @@
 buildscript {
+    ext {
+        springBootVersion = '1.2.5.RELEASE'
+    }
     repositories {
         mavenCentral()
     }
@@ -25,12 +28,12 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     // tag::actuator[]
-    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
     // end::actuator[]
     // tag::tests[]
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     // end::tests[]
 }
 
