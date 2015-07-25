@@ -30,6 +30,6 @@ overridedb.*
 *.ipr
 *.iws
 .idea
-*.jar
+!*.jar
 .DS_Store
 .factorypath
