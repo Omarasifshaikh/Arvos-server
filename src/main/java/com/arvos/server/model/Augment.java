@@ -6,6 +6,10 @@ public class Augment {
 	private String title;
 	private String description;
 	
+	public Augment(long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 	
 	public long getId() {
 		return id;

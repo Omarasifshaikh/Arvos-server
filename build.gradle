@@ -34,7 +34,9 @@ dependencies {
     // end::actuator[]
     // tag::tests[]
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile("junit:junit")
     // end::tests[]
+    
 }
 
 task wrapper(type: Wrapper) {
