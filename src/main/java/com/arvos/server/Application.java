@@ -1,12 +1,9 @@
 package com.arvos.server;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 import com.arvos.server.data.AugmentRepository;
 import com.arvos.server.model.Augment;
@@ -17,19 +14,12 @@ public class Application implements CommandLineRunner {
 	@Autowired
     AugmentRepository repository;
 	
-	//Maximum request(augment) size for multi-part support.
-	private static final String MAX_AUGMENT_SIZE = "50MB";
-	
-	
-	//Simple Spring boot applicaiton class.
+	//Spring boot application class.
     public static void main(String[] args) {
     	SpringApplication.run(Application.class, args);
     }
     
-    
-    
-    
-    
+    //testing JPA persistance
     @Override
     public void run(String... strings) throws Exception {
         // save a couple of augments
@@ -57,24 +47,8 @@ public class Application implements CommandLineRunner {
         // fetch augments by title
         System.out.println("Augment found with findByTitle('Jack'):");
         System.out.println("--------------------------------------------");
-        for (Augment jack : repository.findByTitle("Jack")) {
+        for (Augment jack : repository.findByName("Jack")) {
             System.out.println(jack);
         }
     }
-    
-    
-    
-    
-    
-    
-/*
-    //Adding support for Multi-part file transfers from/to client.
-    @Bean
-    public MultipartConfigElement multipartConfigElement() {
-        final MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize(MAX_AUGMENT_SIZE);
-        factory.setMaxRequestSize(MAX_AUGMENT_SIZE);
-        return factory.createMultipartConfig();
-    }
-*/
 }
