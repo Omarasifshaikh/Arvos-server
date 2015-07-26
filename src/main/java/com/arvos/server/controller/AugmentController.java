@@ -11,8 +11,7 @@ import com.arvos.server.model.Augment;
 @RestController
 public class AugmentController {
 
-	private static final String template = "Augment name, %s!";
-	private final AtomicLong counter = new AtomicLong();
+	private static final String template = "Augment title, %s!";
 	
 	
     @RequestMapping("/")
@@ -20,10 +19,13 @@ public class AugmentController {
         return "Welcome to the Arvos Server.";
     }
 
-    @RequestMapping("/augments")
+    @RequestMapping("/augmentTest")
     public Augment augments(@RequestParam(value="name", defaultValue="Arvos_augment") String name){
     	return new Augment(
                 String.format(template, name));
     }
+    //TODO - Create Augments list.
+    //@RequestMapping("/augments")
+    
 
 }
