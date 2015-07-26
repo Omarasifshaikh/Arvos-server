@@ -1,5 +1,7 @@
 package com.arvos.server.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,7 +39,7 @@ public class Augment {
 	private String category;
 	
 	//Constructors
-	protected Augment() {}
+	public Augment() {}
 	
 	public Augment(String name) {
         this.name = name;
@@ -166,6 +168,19 @@ public class Augment {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	//TODO - Verify uniqueness of Hashcode
+	@Override
+	public int hashCode() {
+		// Google Guava provides great utilities for hashing 
+		return Objects.hashCode(name);
+	}
+	/*TODO Update equals
+	@Override
+	public boolean equals(Object obj) {
+		
+	}
+	*/
 	//TODO- Update Tostring.
 	@Override
     public String toString() {

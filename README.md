@@ -15,3 +15,9 @@ To test the server through your browser:
 `localhost:8080/health`
 
 `localhost:8080/augmentTest`
+
+`localhost:8080/directory-service`
+
+`localhost:8080/directory-serviceJPA`
+
+
