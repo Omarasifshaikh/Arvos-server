@@ -13,3 +13,5 @@ To test the server through your browser:
 `localhost:8080`
 
 `localhost:8080/health`
+
+`localhost:8080/augments`

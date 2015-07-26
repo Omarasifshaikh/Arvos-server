@@ -22,6 +22,7 @@ jar {
 
 repositories {
     mavenCentral()
+    maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
 }
 
 sourceCompatibility = 1.7
@@ -32,10 +33,18 @@ dependencies {
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")
     // end::actuator[]
+    
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile("com.h2database:h2")
+    
+    
+    
+    
     // tag::tests[]
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     testCompile("junit:junit")
     // end::tests[]
+    
     
 }
 

@@ -22,7 +22,7 @@ public class AugmentController {
 
     @RequestMapping("/augments")
     public Augment augments(@RequestParam(value="name", defaultValue="Arvos_augment") String name){
-    	return new Augment(counter.incrementAndGet(),
+    	return new Augment(
                 String.format(template, name));
     }
 

@@ -1,14 +1,26 @@
 package com.arvos.server.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Augment {
-	
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String title;
 	private String description;
 	
-	public Augment(long id, String title) {
-        this.id = id;
+	protected Augment() {}
+	
+	public Augment(String title) {
         this.title = title;
+    }
+	public Augment(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 	
 	public long getId() {
@@ -29,6 +41,13 @@ public class Augment {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	@Override
+    public String toString() {
+        return String.format(
+                "Augment[id=%d, title='%s', description='%s']",
+                id, title, description);
+    }
 	
 
 }
