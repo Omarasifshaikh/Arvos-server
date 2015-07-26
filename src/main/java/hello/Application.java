@@ -23,4 +23,14 @@ public class Application {
             System.out.println(beanName);
         }
     }
+/*
+    //Adding support for Multi-part file transfers from/to client.
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        final MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setMaxFileSize(MAX_AUGMENT_SIZE);
+        factory.setMaxRequestSize(MAX_AUGMENT_SIZE);
+        return factory.createMultipartConfig();
+    }
+*/
 }
