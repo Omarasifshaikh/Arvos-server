@@ -11,6 +11,7 @@ import retrofit.http.POST;
 public interface AugmentSvcApi {
 
 	public static final String AUGMENT_SVC_PATH = "/directory-service";
+	public static final String AUGMENT_TEST_PATH = "/augmentTest";
 
 	@GET(AUGMENT_SVC_PATH)
 	public List<Augment> getAugmentList();

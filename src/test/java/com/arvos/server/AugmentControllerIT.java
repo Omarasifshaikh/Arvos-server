@@ -23,7 +23,7 @@ import com.arvos.server.Application;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0"})
-public class HelloControllerIT {
+public class AugmentControllerIT {
 
     @Value("${local.server.port}")
     private int port;

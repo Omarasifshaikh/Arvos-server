@@ -18,6 +18,4 @@ To test the server through your browser:
 
 `localhost:8080/directory-service`
 
-`localhost:8080/directory-serviceJPA`
-
 

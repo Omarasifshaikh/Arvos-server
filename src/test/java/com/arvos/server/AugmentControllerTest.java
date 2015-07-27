@@ -21,7 +21,7 @@ import com.arvos.server.controller.AugmentController;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MockServletContext.class)
 @WebAppConfiguration
-public class HelloControllerTest {
+public class AugmentControllerTest {
 
 	private MockMvc mvc;
 
