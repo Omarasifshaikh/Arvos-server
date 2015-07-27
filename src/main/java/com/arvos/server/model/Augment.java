@@ -2,19 +2,9 @@ package com.arvos.server.model;
 
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-@Entity
 public class Augment {
-	
-	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonIgnore
 	private long id;
 
@@ -66,12 +56,12 @@ public class Augment {
 	}
 
 	//Getters and setters
-	@JsonProperty
+	@JsonIgnore
 	public long getId() {
 		return id;
 	}
 	
-	@JsonIgnore
+	@JsonProperty
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -124,32 +114,32 @@ public class Augment {
 		this.lon = lon;
 	}
 
-	@JsonProperty
+	@JsonIgnore
 	public double getAlt() {
 		return alt;
 	}
 	
-	@JsonIgnore
+	@JsonProperty
 	public void setAlt(double alt) {
 		this.alt = alt;
 	}
 
-	@JsonProperty
+	@JsonIgnore
 	public double getRadius() {
 		return radius;
 	}
 
-	@JsonIgnore
+	@JsonProperty
 	public void setRadius(double radius) {
 		this.radius = radius;
 	}
 
-	@JsonProperty
+	@JsonIgnore
 	public String getDeveloperKey() {
 		return developerKey;
 	}
 
-	@JsonIgnore
+	@JsonProperty
 	public void setDeveloperKey(String developerKey) {
 		this.developerKey = developerKey;
 	}
@@ -169,23 +159,17 @@ public class Augment {
 		this.description = description;
 	}
 	
-	//TODO - Verify uniqueness of Hashcode
+	//TODO - Verify uniqueness of Hash
 	@Override
 	public int hashCode() {
 		// Google Guava provides great utilities for hashing 
-		return Objects.hashCode(name);
+		return Objects.hash(getName(),getAuthor(), getLat(), getLon());
 	}
-	/*TODO Update equals
 	@Override
-	public boolean equals(Object obj) {
-		
+	public String toString() {
+		return "Augment [id=" + id + ", arvosVersion=" + arvosVersion
+				+ ", name=" + name + ", author=" + author + ", url=" + url
+				+ ", lat=" + lat + ", lon=" + lon + ", description="
+				+ description + ", category=" + category + "]";
 	}
-	*/
-	//TODO- Update Tostring.
-	@Override
-    public String toString() {
-        return String.format(
-                "Augment[id=%d, name='%s', description='%s']",
-                id, name, description);
-    }
 }

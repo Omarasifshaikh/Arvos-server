@@ -1,19 +1,28 @@
 package com.arvos.server;
 
-import java.util.List;
+import java.util.Collection;
+
 
 import com.arvos.server.model.Augment;
 
-import retrofit.http.Body;
 import retrofit.http.GET;
-import retrofit.http.POST;
 
 public interface AugmentSvcApi {
 
 	public static final String AUGMENT_SVC_PATH = "/directory-service";
+	
 	public static final String AUGMENT_TEST_PATH = "/augmentTest";
 
+	@GET("/")
+    public String index();
+	
+	@GET(AUGMENT_TEST_PATH)
+    public Augment augmentTest(String name);
+	
 	@GET(AUGMENT_SVC_PATH)
-	public List<Augment> getAugmentList();
+	public Collection<Augment> getAugmentList();
+	
+	@GET(AUGMENT_SVC_PATH)
+	public Collection<Augment> getAugments(Long id, double lat, double lon, double alt, double azi, String ver, String plat, String dkey);
 	
 }

@@ -31,9 +31,26 @@ public class AugmentController {
                 String.format("Augment Test title:, %s!", name));
     }
     
-    //TODO - Create Augments list as per specification here: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service.
+    //Augments list as per specification here: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service.
     @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.GET)
 	public @ResponseBody Collection<Augment> getAugmentList() {
 		return Lists.newArrayList(augmentRepository_.findAll());
+	}
+    
+    //Client request with optional parameters as per: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service
+    @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.POST)
+	public @ResponseBody Collection<Augment> getAugments(
+			@RequestParam(value="id",required = false)Long id,
+			@RequestParam(value="lat",required = false) double lat,
+			@RequestParam(value="lon",required = false) double lon,
+			@RequestParam(value="alt",required = false) double alt,
+			@RequestParam(value="azi",required = false) double azi,
+			@RequestParam(value="ver",required = false) String ver,
+			@RequestParam(value="plat",required = false) String plat,
+			@RequestParam(value="plat",required = false) String dkey
+			) {
+		//TODO -Implement the query Logic here.
+    	return Lists.newArrayList(augmentRepository_.findAll());
+		
 	}
 }
