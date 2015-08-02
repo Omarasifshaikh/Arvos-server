@@ -16,7 +16,7 @@ import com.arvos.server.model.AugmentRepository;
 import com.google.common.collect.Lists;
 
 @Controller
-public class AugmentController {
+public class AugmentController implements AugmentSvcApi{
 	
 	@Autowired
 	private AugmentRepository augmentRepository_;
