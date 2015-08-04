@@ -165,6 +165,7 @@ public class Augment {
 		// Google Guava provides great utilities for hashing 
 		return Objects.hash(getName(),getAuthor(), getLat(), getLon());
 	}
+	//TODO - implement the equals method
 	@Override
 	public String toString() {
 		return "Augment [id=" + id + ", arvosVersion=" + arvosVersion
