@@ -14,9 +14,6 @@ public interface AugmentSvcApi {
 	public static final String AUGMENT_TEST_PATH = "/augmentTest";
 	public static final String AUGMENT_CREATE_PATH = "/augmentCreate";
 
-	@GET("/")
-    public String index();
-	
 	@GET(AUGMENT_TEST_PATH)
     public Augment augmentTest(String name);
 	

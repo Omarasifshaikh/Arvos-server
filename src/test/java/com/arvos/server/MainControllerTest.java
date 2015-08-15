@@ -16,24 +16,37 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.arvos.server.controller.AugmentController;
+ 
+
+import com.arvos.server.controller.MainController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MockServletContext.class)
 @WebAppConfiguration
-public class AugmentControllerTest {
+public class MainControllerTest {
 
 	private MockMvc mvc;
 
 	@Before
 	public void setUp() throws Exception {
-		mvc = MockMvcBuilders.standaloneSetup(new AugmentController()).build();
+		mvc = MockMvcBuilders.standaloneSetup(new MainController()).build();
 	}
 
 	@Test
 	public void getHello() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(MockMvcRequestBuilders.get("/")
+				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().string(equalTo("Welcome to the Arvos Server.")));
 	}
+	/*
+	@Test
+	public void getHealth() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/health")
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().string(equalTo("{\"status\":\"UP\"}")));
+				
+	}
+	*/
 }

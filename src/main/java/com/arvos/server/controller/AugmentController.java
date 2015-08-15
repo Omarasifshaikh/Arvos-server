@@ -19,12 +19,8 @@ import com.google.common.collect.Lists;
 public class AugmentController implements AugmentSvcApi{
 	
 	@Autowired
-	  private AugmentDao augmentDao;
+	private AugmentDao augmentDao;
 	
-    @RequestMapping("/")
-    public @ResponseBody String index() {
-        return "Welcome to the Arvos Server.";
-    }
     
     @RequestMapping(value=AugmentSvcApi.AUGMENT_TEST_PATH, method=RequestMethod.GET)
     public @ResponseBody Augment augmentTest(@RequestParam(value="name", defaultValue="Arvos_augment") String name){
