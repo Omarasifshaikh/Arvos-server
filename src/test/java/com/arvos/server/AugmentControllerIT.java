@@ -42,4 +42,9 @@ public class AugmentControllerIT {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		assertThat(response.getBody(), equalTo("Welcome to the Arvos Server."));
 	}
+	@Test
+	public void getHealth() throws Exception {
+		ResponseEntity<String> response = template.getForEntity(base.toString() + "health", String.class);
+		assertThat(response.getBody(), equalTo("{\"status\":\"UP\"}"));
+	}
 }

@@ -21,7 +21,7 @@ public interface AugmentSvcApi {
 	public Collection<Augment> getAugmentList();
 	
 	@GET(AUGMENT_CREATE_PATH)
-	public String createAugment();
+	public String createAugment(String name);
 	
 	/*
 	@GET(AUGMENT_SVC_PATH)

@@ -28,10 +28,10 @@ public class AugmentController implements AugmentSvcApi{
                 String.format("Augment Test title:, %s!", name));
     }
     @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.GET)
-    public @ResponseBody String createAugment() {
+    public @ResponseBody String createAugment(String name) {
       Augment aug = null;
       try {
-        aug = new Augment();
+        aug = new Augment(name);
         augmentDao.save(aug);
       }
       catch (Exception ex) {
@@ -45,6 +45,8 @@ public class AugmentController implements AugmentSvcApi{
 	public @ResponseBody Collection<Augment> getAugmentList() {
 		return Lists.newArrayList(augmentDao.findAll());
 	}
+    
+    
     
     
     
