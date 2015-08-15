@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.arvos.server.AugmentSvcApi;
 import com.arvos.server.model.Augment;
-import com.arvos.server.model.AugmentRepository;
+import com.arvos.server.model.AugmentDao;
 import com.google.common.collect.Lists;
 
 @Controller
 public class AugmentController implements AugmentSvcApi{
 	
 	@Autowired
-	private AugmentRepository augmentRepository_;
+	  private AugmentDao augmentDao;
 	
     @RequestMapping("/")
     public @ResponseBody String index() {
@@ -31,13 +31,29 @@ public class AugmentController implements AugmentSvcApi{
     	return new Augment(
                 String.format("Augment Test title:, %s!", name));
     }
+    @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.GET)
+    public @ResponseBody String createAugment() {
+      Augment aug = null;
+      try {
+        aug = new Augment();
+        augmentDao.save(aug);
+      }
+      catch (Exception ex) {
+        return "Error creating the user: " + ex.toString();
+      }
+      return "User succesfully created! (id = " + aug.getId() + ")";
+    }
     
     //Augments list as per specification here: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service.
     @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.GET)
 	public @ResponseBody Collection<Augment> getAugmentList() {
-		return Lists.newArrayList(augmentRepository_.findAll());
+		return Lists.newArrayList(augmentDao.findAll());
 	}
     
+    
+    
+    
+    /*
     //Client request with optional parameters as per: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service
     @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.POST)
 	public @ResponseBody Collection<Augment> getAugments(
@@ -55,7 +71,7 @@ public class AugmentController implements AugmentSvcApi{
 		
 	}
     
-    
+    */
     
     //START OF MVC
     
@@ -64,4 +80,5 @@ public class AugmentController implements AugmentSvcApi{
         model.addAttribute("name", name);
         return "greeting";
     }
+    
 }

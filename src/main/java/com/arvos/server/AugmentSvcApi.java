@@ -12,6 +12,7 @@ public interface AugmentSvcApi {
 	public static final String AUGMENT_SVC_PATH = "/directory-service";
 	
 	public static final String AUGMENT_TEST_PATH = "/augmentTest";
+	public static final String AUGMENT_CREATE_PATH = "/augmentCreate";
 
 	@GET("/")
     public String index();
@@ -22,7 +23,11 @@ public interface AugmentSvcApi {
 	@GET(AUGMENT_SVC_PATH)
 	public Collection<Augment> getAugmentList();
 	
+	@GET(AUGMENT_CREATE_PATH)
+	public String createAugment();
+	
+	/*
 	@GET(AUGMENT_SVC_PATH)
 	public Collection<Augment> getAugments(Long id, double lat, double lon, double alt, double azi, String ver, String plat, String dkey);
-	
+	*/
 }

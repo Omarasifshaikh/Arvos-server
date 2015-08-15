@@ -7,14 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.arvos.server.model.Augment;
-import com.arvos.server.model.AugmentRepository;
-import com.arvos.server.model.InMemoryAugmentRepository;
-
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	@Autowired
-	private AugmentRepository augmentRepository_;
 	
 	//Spring boot application class.
     public static void main(String[] args) {
@@ -24,7 +19,7 @@ public class Application implements CommandLineRunner {
     //Testing In-memory persistence
     @Override
     public void run(String... strings) throws Exception {
-        // save a couple of augments
+      /*  // save a couple of augments
     	augmentRepository_.save(new Augment("Jack", "Augment1"));
     	augmentRepository_.save(new Augment("Chloe", "Augment2"));
     	augmentRepository_.save(new Augment("Kim", "Augment3"));
@@ -38,6 +33,7 @@ public class Application implements CommandLineRunner {
             System.out.println(augment);
         }
         System.out.println();
+        */
         /*TODO: implement repo api.
         // fetch an individual augment by ID
         Augment augment = augmentRepository_.findOne(1L);
@@ -53,8 +49,5 @@ public class Application implements CommandLineRunner {
             System.out.println(jack);
         }*/
     }
-    @Bean
-    public AugmentRepository augmentRepository(){
-    	return new InMemoryAugmentRepository();
-    }
+    
 }
