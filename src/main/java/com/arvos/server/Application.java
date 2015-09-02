@@ -8,11 +8,14 @@ import org.springframework.context.annotation.Bean;
 
 import com.arvos.server.model.Augment;
 import com.arvos.server.model.AugmentDao;
+import com.arvos.server.model.DirectoryDao;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private AugmentDao augmentDao;
+	@Autowired
+	private DirectoryDao directoryDao;
 	
 	
 	//Spring boot application class.

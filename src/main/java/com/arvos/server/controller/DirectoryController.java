@@ -11,22 +11,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.arvos.server.AugmentSvcApi;
+import com.arvos.server.DirectorySvcApi;
 import com.arvos.server.model.Augment;
 import com.arvos.server.model.AugmentDao;
+import com.arvos.server.model.Directory;
+import com.arvos.server.model.DirectoryDao;
 import com.google.common.collect.Lists;
 
 @Controller
-public class AugmentController implements AugmentSvcApi{
+public class DirectoryController implements DirectorySvcApi{
 	
 	@Autowired
-	private AugmentDao augmentDao;
+	private DirectoryDao directoryDao;
 	
     
-    @RequestMapping(value=AugmentSvcApi.AUGMENT_TEST_PATH, method=RequestMethod.GET)
-    public @ResponseBody Augment augmentTest(@RequestParam(value="name", defaultValue="Arvos_augment") String name){
-    	return new Augment(
-                String.format("Augment Test title:, %s!", name));
+    @RequestMapping(value=DirectorySvcApi.DIRECTORY_TEST_PATH, method=RequestMethod.GET)
+    public @ResponseBody Directory directoryTest(@RequestParam(value="name", defaultValue="Arvos_directory") String name){
+    	return new Directory(
+                String.format("Directory Test title:, %s!", name));
     }
+/*
     @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.GET)
     public @ResponseBody String createAugment(String name) {
       Augment aug = null;
@@ -40,10 +44,13 @@ public class AugmentController implements AugmentSvcApi{
       return "User succesfully created! (id = " + aug.getId() + ")";
     }
     
+    
+    */
+    
     //Augments list as per specification here: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service.
-    @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.GET)
-	public @ResponseBody Collection<Augment> getAugmentList() {
-		return Lists.newArrayList(augmentDao.findAll());
+    @RequestMapping(value=DirectorySvcApi.DIRECTORY_SVC_PATH, method=RequestMethod.GET)
+	public @ResponseBody Collection<Directory> getDirectoryList() {
+		return Lists.newArrayList(directoryDao.findAll());
 	}
     
     
@@ -70,6 +77,8 @@ public class AugmentController implements AugmentSvcApi{
 	}
     
     */
+    
+    
     
     
 }

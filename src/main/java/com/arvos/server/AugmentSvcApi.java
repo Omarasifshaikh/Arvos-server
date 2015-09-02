@@ -9,7 +9,7 @@ import retrofit.http.GET;
 
 public interface AugmentSvcApi {
 
-	public static final String AUGMENT_SVC_PATH = "/directory-service";
+	public static final String AUGMENT_SVC_PATH = "/augments";
 	
 	public static final String AUGMENT_TEST_PATH = "/augmentTest";
 	public static final String AUGMENT_CREATE_PATH = "/augmentCreate";
