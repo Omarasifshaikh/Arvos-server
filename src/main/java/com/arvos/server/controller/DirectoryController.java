@@ -3,11 +3,14 @@ package com.arvos.server.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.arvos.server.AugmentSvcApi;
@@ -53,11 +56,6 @@ public class DirectoryController implements DirectorySvcApi{
 		return Lists.newArrayList(directoryDao.findAll());
 	}
     
-    
-    
-    
-    
-    
     /*
     //Client request with optional parameters as per: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service
     @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.POST)
@@ -73,12 +71,61 @@ public class DirectoryController implements DirectorySvcApi{
 			) {
 		//TODO -Implement the query Logic here.
     	return Lists.newArrayList(augmentRepository_.findAll());
-		
 	}
     
     */
     
     
+    /**
+     * Beginning of crud here, need to add create, update, delete operations,
+     * 
+     */
+    //TODO - Add necessary parameters.
+    @RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.GET)
+    public @ResponseBody String createDirectory(String name) {
+      Directory dir = null;
+      try {
+        dir = new Directory(name);
+        directoryDao.save(dir);
+      }
+      catch (Exception ex) {
+        return "Error creating the Directory: " + ex.toString();
+      }
+      return "Directory succesfully created! (id = " + dir.getId() + ")";
+    }
+    //delete the directory here
+    //TODO HTTP method type
+    @RequestMapping(value="/deleteDirectory/{id}", method=RequestMethod.GET)
+    public @ResponseBody String deleteDirectory(@PathVariable long id) {
+      Directory dir = findOne(id);
+      //TODO figure out response entity.
+      if (dir == null) return new ResponseEntity<String>(HttpStatus.NOT_FOUND);  // 404
+		
+      try {
+    	  //TODO
+    	  //find the directory here,
+    	  //Delete it from the repository.
+      }
+      catch (Exception ex) {
+        return "Error deleting the Directory: " + ex.toString();
+      }
+      return "Directory  succesfully deleted! (id = " + dir.getId() + ")";
+    }
+    //delete the directory here
+    //TODO - Add parameters.
+    @RequestMapping(value="", method=RequestMethod.GET)
+    public @ResponseBody String replaceDirectory(long id) {
+      Directory dir = null;
+      try {
+    	  //TODO
+    	  //find the directory here,
+    	  //replace the values, add it back to the repository.
+      }
+      catch (Exception ex) {
+        return "Error replacing the Directory: " + ex.toString();
+      }
+      return "Directory succesfully replaced! (id = " + dir.getId() + ")";
+    }
     
     
 }
