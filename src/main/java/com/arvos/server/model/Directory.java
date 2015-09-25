@@ -175,9 +175,12 @@ public class Directory {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "Directory [arvosVersion=" + arvosVersion + ", name=" + name + ", author=" + author + ", url=" + url
+				+ ", lat=" + lat + ", lon=" + lon + ", alt=" + alt + ", radius=" + radius + ", description="
+				+ description + ", category=" + category + "]";
 	}
+
+	
 	
 }
 

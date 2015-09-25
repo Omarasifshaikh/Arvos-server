@@ -80,6 +80,7 @@ public class DirectoryController implements DirectorySvcApi{
      * Beginning of crud here, need to add create, update, delete operations,
      * 
      */
+    /*
     //TODO - Add necessary parameters.
     @RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.GET)
     public @ResponseBody String createDirectory(String name) {
@@ -127,5 +128,5 @@ public class DirectoryController implements DirectorySvcApi{
       return "Directory succesfully replaced! (id = " + dir.getId() + ")";
     }
     
-    
+ */   
 }
