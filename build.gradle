@@ -14,6 +14,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
 jar {
     baseName = 'arvos-server'
@@ -25,10 +26,11 @@ repositories {
     maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
+	providedCompile 'org.springframework.boot:spring-boot-starter-tomcat:1.2.6.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}")

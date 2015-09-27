@@ -4,17 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 import com.arvos.server.model.Augment;
 import com.arvos.server.model.AugmentDao;
 @SpringBootApplication
-public class Application implements CommandLineRunner {
+public class Application extends SpringBootServletInitializer implements CommandLineRunner {
 	
 	@Autowired
 	private AugmentDao augmentDao;
 	
-	
+	@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
 	//Spring boot application class.
     public static void main(String[] args) {
     	SpringApplication.run(Application.class, args);
