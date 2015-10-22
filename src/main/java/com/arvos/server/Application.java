@@ -10,11 +10,15 @@ import org.springframework.context.annotation.Bean;
 
 import com.arvos.server.model.Augment;
 import com.arvos.server.model.AugmentDao;
+import com.arvos.server.model.Directory;
+import com.arvos.server.model.DirectoryDao;
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer implements CommandLineRunner {
 	
 	@Autowired
 	private AugmentDao augmentDao;
+	@Autowired
+	private DirectoryDao directoryDao;
 	
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -35,11 +39,26 @@ public class Application extends SpringBootServletInitializer implements Command
     	augmentDao.save(new Augment("David", "Augment4"));
     	augmentDao.save(new Augment("Michelle", "Augment5"));
 
+    	
+
+    	directoryDao.save(new Directory("Jack"));
+    	directoryDao.save(new Directory("Chloe"));
+    	directoryDao.save(new Directory("Kim"));
+    	directoryDao.save(new Directory("David"));
+    	directoryDao.save(new Directory("Michelle"));
+    	
+    	
         // fetch all augments
         System.out.println("Augments found with findAll():");
         System.out.println("-------------------------------");
         for (Augment augment : augmentDao.findAll()) {
             System.out.println(augment);
+        }
+        // fetch all augments
+        System.out.println("Directories found with findAll():");
+        System.out.println("-------------------------------");
+        for (Directory dir : directoryDao.findAll()) {
+            System.out.println(dir);
         }
         /*TODO: implement repo api.
         // fetch an individual augment by ID

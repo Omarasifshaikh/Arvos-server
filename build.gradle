@@ -26,7 +26,8 @@ repositories {
     maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
 }
 
-sourceCompatibility = 1.8
+
+sourceCompatibility = 1.7
 targetCompatibility = 1.8
 
 dependencies {
