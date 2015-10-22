@@ -27,35 +27,16 @@ public class AugmentController implements AugmentSvcApi{
     	return new Augment(
                 String.format("Augment Test title:, %s!", name));
     }
-    @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.GET)
-    public @ResponseBody String createAugment(String name) {
-      Augment aug = null;
-      try {
-        aug = new Augment(name);
-        augmentDao.save(aug);
-      }
-      catch (Exception ex) {
-        return "Error creating the user: " + ex.toString();
-      }
-      return "User succesfully created! (id = " + aug.getId() + ")";
-    }
     
-    //Augments list as per specification here: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service.
+    
     @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.GET)
 	public @ResponseBody Collection<Augment> getAugmentList() {
 		return Lists.newArrayList(augmentDao.findAll());
 	}
-    
-    
-    
-    
-    
-    
-    /*
-    //Client request with optional parameters as per: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service
-    @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.POST)
-	public @ResponseBody Collection<Augment> getAugments(
-			@RequestParam(value="id",required = false)Long id,
+
+    @RequestMapping(value=AugmentSvcApi.AUGMENT_SEARCH_PATH, method=RequestMethod.GET)
+	public @ResponseBody Collection<Augment> searchAugments(
+			@RequestParam(value="id",required = false) Long id,
 			@RequestParam(value="lat",required = false) double lat,
 			@RequestParam(value="lon",required = false) double lon,
 			@RequestParam(value="alt",required = false) double alt,
@@ -64,12 +45,22 @@ public class AugmentController implements AugmentSvcApi{
 			@RequestParam(value="plat",required = false) String plat,
 			@RequestParam(value="plat",required = false) String dkey
 			) {
-		//TODO -Implement the query Logic here.
-    	return Lists.newArrayList(augmentRepository_.findAll());
-		
+		//TODO -Implement the query search here.
+    	return Lists.newArrayList(augmentDao.findAll());	
 	}
     
-    */
     
+    @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.POST)
+    public @ResponseBody String createAugment(String name) {
+    	Augment aug = null;
+    	try {
+    		aug = new Augment(name);
+    		augmentDao.save(aug);
+    	}
+    	catch (Exception ex) {
+    		return "Error creating the Augment: " + ex.toString();
+    	}
+    	return "Augment succesfully created! (id = " + aug.getId() + ")";
+    }
     
 }

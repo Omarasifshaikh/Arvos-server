@@ -33,33 +33,16 @@ public class DirectoryController implements DirectorySvcApi{
     	return new Directory(
                 String.format("Directory Test title:, %s!", name));
     }
-/*
-    @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.GET)
-    public @ResponseBody String createAugment(String name) {
-      Augment aug = null;
-      try {
-        aug = new Augment(name);
-        augmentDao.save(aug);
-      }
-      catch (Exception ex) {
-        return "Error creating the user: " + ex.toString();
-      }
-      return "User succesfully created! (id = " + aug.getId() + ")";
-    }
+
     
-    
-    */
-    
-    //Augments list as per specification here: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service.
     @RequestMapping(value=DirectorySvcApi.DIRECTORY_SVC_PATH, method=RequestMethod.GET)
 	public @ResponseBody Collection<Directory> getDirectoryList() {
 		return Lists.newArrayList(directoryDao.findAll());
 	}
     
-    /*
-    //Client request with optional parameters as per: https://github.com/peterGraf/ARVOS/wiki/ARVOS-Directory-Service
-    @RequestMapping(value=AugmentSvcApi.AUGMENT_SVC_PATH, method=RequestMethod.POST)
-	public @ResponseBody Collection<Augment> getAugments(
+    
+    @RequestMapping(value=DirectorySvcApi.DIRECTORY_SEARCH_PATH, method=RequestMethod.GET)
+	public @ResponseBody Collection<Directory> getDirectories(
 			@RequestParam(value="id",required = false)Long id,
 			@RequestParam(value="lat",required = false) double lat,
 			@RequestParam(value="lon",required = false) double lon,
@@ -70,19 +53,11 @@ public class DirectoryController implements DirectorySvcApi{
 			@RequestParam(value="plat",required = false) String dkey
 			) {
 		//TODO -Implement the query Logic here.
-    	return Lists.newArrayList(augmentRepository_.findAll());
+    	return Lists.newArrayList(directoryDao.findAll());
 	}
     
-    */
     
-    
-    /**
-     * Beginning of crud here, need to add create, update, delete operations,
-     * 
-     */
-    /*
-    //TODO - Add necessary parameters.
-    @RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.GET)
+    @RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.POST)
     public @ResponseBody String createDirectory(String name) {
       Directory dir = null;
       try {
@@ -92,8 +67,9 @@ public class DirectoryController implements DirectorySvcApi{
       catch (Exception ex) {
         return "Error creating the Directory: " + ex.toString();
       }
-      return "Directory succesfully created! (id = " + dir.getId() + ")";
+      return "User succesfully created! (id = " + dir.getId() + ")";
     }
+    /*
     //delete the directory here
     //TODO HTTP method type
     @RequestMapping(value="/deleteDirectory/{id}", method=RequestMethod.GET)
@@ -112,7 +88,7 @@ public class DirectoryController implements DirectorySvcApi{
       }
       return "Directory  succesfully deleted! (id = " + dir.getId() + ")";
     }
-    //delete the directory here
+    //replace the directory here
     //TODO - Add parameters.
     @RequestMapping(value="", method=RequestMethod.GET)
     public @ResponseBody String replaceDirectory(long id) {
