@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.arvos.server.AugmentSvcApi;
@@ -50,7 +51,7 @@ public class AugmentController implements AugmentSvcApi{
 	}
     
     
-    @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.POST)
+    @RequestMapping(value=AugmentSvcApi.AUGMENT_CREATE_PATH, method=RequestMethod.GET)
     public @ResponseBody String createAugment(String name) {
     	Augment aug = null;
     	try {
@@ -63,4 +64,16 @@ public class AugmentController implements AugmentSvcApi{
     	return "Augment succesfully created! (id = " + aug.getId() + ")";
     }
     
+    @RequestMapping(value=AugmentSvcApi.AUGMENT_DELETE_PATH, method=RequestMethod.GET)
+    public @ResponseBody String deleteAugment(@PathVariable Long id) {//TODO figure out accepting the id
+    	Augment aug = augmentDao.findOne(id);
+    	try {
+    		augmentDao.delete(id);
+    	}
+    	catch (Exception ex) {
+    		return "Error deleting the Augment: " + ex.toString();
+    	}
+    	return "Augment succesfully deleted! (id = " + id + ")";
+    }
+    //TODO- FIX GET
 }

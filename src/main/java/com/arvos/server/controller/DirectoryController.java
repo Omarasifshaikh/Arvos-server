@@ -56,8 +56,8 @@ public class DirectoryController implements DirectorySvcApi{
     	return Lists.newArrayList(directoryDao.findAll());
 	}
     
-    
-    @RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.POST)
+    //TODO- figure out input variables in the format ?q=1222.... 
+    @RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.GET)
     public @ResponseBody String createDirectory(String name) {
       Directory dir = null;
       try {
@@ -67,28 +67,29 @@ public class DirectoryController implements DirectorySvcApi{
       catch (Exception ex) {
         return "Error creating the Directory: " + ex.toString();
       }
-      return "User succesfully created! (id = " + dir.getId() + ")";
+      return "Directory succesfully created! (id = " + dir.getId() + ")";
     }
-    /*
-    //delete the directory here
-    //TODO HTTP method type
-    @RequestMapping(value="/deleteDirectory/{id}", method=RequestMethod.GET)
-    public @ResponseBody String deleteDirectory(@PathVariable long id) {
-      Directory dir = findOne(id);
-      //TODO figure out response entity.
-      if (dir == null) return new ResponseEntity<String>(HttpStatus.NOT_FOUND);  // 404
-		
+    
+    @RequestMapping(value=DirectorySvcApi.DIRECTORY_DELETE_PATH, method=RequestMethod.GET)
+    public @ResponseBody String deleteDirectory(@PathVariable Long id) {
+      Directory dir = directoryDao.findOne(id);
+      
+      //TODO fix response entity error.
+      //if (dir == null) return new ResponseEntity<String>(HttpStatus.NOT_FOUND);  // 404
+      
       try {
-    	  //TODO
-    	  //find the directory here,
-    	  //Delete it from the repository.
+        directoryDao.delete(id);
       }
       catch (Exception ex) {
         return "Error deleting the Directory: " + ex.toString();
       }
-      return "Directory  succesfully deleted! (id = " + dir.getId() + ")";
+      return "Directory succesfully Deleted! (id = " + id + ")";
+      //TODO return http success.
     }
-    //replace the directory here
+    
+    
+    /*
+    //REPLACE the directory here
     //TODO - Add parameters.
     @RequestMapping(value="", method=RequestMethod.GET)
     public @ResponseBody String replaceDirectory(long id) {
