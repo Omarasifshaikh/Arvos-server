@@ -40,6 +40,7 @@ public class MainControllerTest {
 				.andExpect(content().string(equalTo("Welcome to the Arvos Server.")));
 	}
 	/*
+	// TODO - Figure out why the /health is not working.
 	@Test
 	public void getHealth() throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/health")
@@ -49,4 +50,5 @@ public class MainControllerTest {
 				
 	}
 	*/
+	
 }

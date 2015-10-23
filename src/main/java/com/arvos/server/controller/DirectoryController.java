@@ -23,25 +23,25 @@ import com.google.common.collect.Lists;
 
 @Controller
 public class DirectoryController implements DirectorySvcApi{
-	
+
 	@Autowired
 	private DirectoryDao directoryDao;
-	
-    
-    @RequestMapping(value=DirectorySvcApi.DIRECTORY_TEST_PATH, method=RequestMethod.GET)
-    public @ResponseBody Directory directoryTest(@RequestParam(value="name", defaultValue="Arvos_directory") String name){
-    	return new Directory(
-                String.format("Directory Test title:, %s!", name));
-    }
 
-    
-    @RequestMapping(value=DirectorySvcApi.DIRECTORY_SVC_PATH, method=RequestMethod.GET)
+
+	@RequestMapping(value=DirectorySvcApi.DIRECTORY_TEST_PATH, method=RequestMethod.GET)
+	public @ResponseBody Directory directoryTest(@RequestParam(value="name", defaultValue="Arvos_directory") String name){
+		return new Directory(
+				String.format("Directory Test title:, %s!", name));
+	}
+
+
+	@RequestMapping(value=DirectorySvcApi.DIRECTORY_SVC_PATH, method=RequestMethod.GET)
 	public @ResponseBody Collection<Directory> getDirectoryList() {
 		return Lists.newArrayList(directoryDao.findAll());
 	}
-    
-    
-    @RequestMapping(value=DirectorySvcApi.DIRECTORY_SEARCH_PATH, method=RequestMethod.GET)
+
+
+	@RequestMapping(value=DirectorySvcApi.DIRECTORY_SEARCH_PATH, method=RequestMethod.GET)
 	public @ResponseBody Collection<Directory> getDirectories(
 			@RequestParam(value="id",required = false)Long id,
 			@RequestParam(value="lat",required = false) double lat,
@@ -53,57 +53,61 @@ public class DirectoryController implements DirectorySvcApi{
 			@RequestParam(value="plat",required = false) String dkey
 			) {
 		//TODO -Implement the query Logic here.
-    	return Lists.newArrayList(directoryDao.findAll());
+		return Lists.newArrayList(directoryDao.findAll());
 	}
-    
-    //TODO- figure out input variables in the format ?q=1222.... 
-    @RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.GET)
-    public @ResponseBody String createDirectory(String name) {
-      Directory dir = null;
-      try {
-        dir = new Directory(name);
-        directoryDao.save(dir);
-      }
-      catch (Exception ex) {
-        return "Error creating the Directory: " + ex.toString();
-      }
-      return "Directory succesfully created! (id = " + dir.getId() + ")";
-    }
-    
-    @RequestMapping(value=DirectorySvcApi.DIRECTORY_DELETE_PATH, method=RequestMethod.GET)
-    public @ResponseBody String deleteDirectory(@PathVariable Long id) {
-      Directory dir = directoryDao.findOne(id);
-      
-      //TODO fix response entity error.
-      //if (dir == null) return new ResponseEntity<String>(HttpStatus.NOT_FOUND);  // 404
-      
-      try {
-        directoryDao.delete(id);
-      }
-      catch (Exception ex) {
-        return "Error deleting the Directory: " + ex.toString();
-      }
-      return "Directory succesfully Deleted! (id = " + id + ")";
-      //TODO return http success.
-    }
-    
-    
-    /*
-    //REPLACE the directory here
-    //TODO - Add parameters.
-    @RequestMapping(value="", method=RequestMethod.GET)
-    public @ResponseBody String replaceDirectory(long id) {
-      Directory dir = null;
-      try {
-    	  //TODO
-    	  //find the directory here,
-    	  //replace the values, add it back to the repository.
-      }
-      catch (Exception ex) {
-        return "Error replacing the Directory: " + ex.toString();
-      }
-      return "Directory succesfully replaced! (id = " + dir.getId() + ")";
-    }
-    
- */   
+
+	//TODO- figure out input variables in the format ?q=1222.... 
+	@RequestMapping(value=DirectorySvcApi.DIRECTORY_CREATE_PATH, method=RequestMethod.GET)
+	public @ResponseBody String createDirectory(
+			@RequestParam(value="name",required = false) String name
+			) {
+		Directory dir = null;
+		try {
+			dir = new Directory(name);
+			directoryDao.save(dir);
+		}
+		catch (Exception ex) {
+			return "Error creating the Directory: " + ex.toString();
+		}
+		return "Directory succesfully created! (id = " + dir.getId() + ")";
+	}
+
+	@RequestMapping(value=DirectorySvcApi.DIRECTORY_UPDATE_PATH, method=RequestMethod.GET)
+	public @ResponseBody String updateDirectory(
+			@PathVariable Long id,
+			@RequestParam(value="lat",required = false) double lat,
+			@RequestParam(value="lon",required = false) double lon,
+			@RequestParam(value="alt",required = false) double alt,
+			@RequestParam(value="azi",required = false) double azi,
+			@RequestParam(value="ver",required = false) String ver,
+			@RequestParam(value="plat",required = false) String plat,
+			@RequestParam(value="plat",required = false) String dkey
+			) {
+		Directory dir = directoryDao.findOne(id);
+		try {
+			//TODO - update the Directory.
+		}
+		catch (Exception ex) {
+			return "Error updating the Directory: " + ex.toString();
+		}
+		return "Directory succesfully Updated! (id = " + dir.getId() + ")";
+	}
+
+
+	@RequestMapping(value=DirectorySvcApi.DIRECTORY_DELETE_PATH, method=RequestMethod.GET)
+	public @ResponseBody String deleteDirectory(@PathVariable Long id) {
+		Directory dir = directoryDao.findOne(id);
+
+		//TODO fix response entity error.
+		//if (dir == null) return new ResponseEntity<String>(HttpStatus.NOT_FOUND);  // 404
+
+		try {
+			directoryDao.delete(id);
+		}
+		catch (Exception ex) {
+			return "Error deleting the Directory: " + ex.toString();
+		}
+		return "Directory succesfully Deleted! (id = " + id + ")";
+		//TODO return http success.
+	}
 }

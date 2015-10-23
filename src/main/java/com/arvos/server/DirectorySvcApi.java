@@ -17,6 +17,7 @@ public interface DirectorySvcApi {
 	public static final String DIRECTORY_SEARCH_PATH = "/directory-service/search";
 	
 	public static final String DIRECTORY_CREATE_PATH = "/directory/create";
+	public static final String DIRECTORY_UPDATE_PATH = "/directory/update/{id}";
 	public static final String DIRECTORY_DELETE_PATH = "/directory/delete/{id}";
 
 	@GET(DIRECTORY_TEST_PATH)
@@ -30,6 +31,9 @@ public interface DirectorySvcApi {
 	
 	@GET(DIRECTORY_CREATE_PATH)
 	public String createDirectory(String name);
+	
+	@GET(DIRECTORY_UPDATE_PATH)
+	public String updateDirectory(Long id, double lat, double lon, double alt, double azi, String ver, String plat, String dkey);
 	
 	@GET(DIRECTORY_DELETE_PATH)
 	public String deleteDirectory(Long id);

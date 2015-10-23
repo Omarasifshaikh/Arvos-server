@@ -64,6 +64,27 @@ public class AugmentController implements AugmentSvcApi{
     	return "Augment succesfully created! (id = " + aug.getId() + ")";
     }
     
+    @RequestMapping(value=AugmentSvcApi.AUGMENT_UPDATE_PATH, method=RequestMethod.GET)
+	public @ResponseBody String updateAugment(
+			@PathVariable Long id,
+			@RequestParam(value="lat",required = false) double lat,
+			@RequestParam(value="lon",required = false) double lon,
+			@RequestParam(value="alt",required = false) double alt,
+			@RequestParam(value="azi",required = false) double azi,
+			@RequestParam(value="ver",required = false) String ver,
+			@RequestParam(value="plat",required = false) String plat,
+			@RequestParam(value="plat",required = false) String dkey
+			) {
+    	Augment aug = augmentDao.findOne(id);
+    	try {
+    		//TODO apply changes and save the augment.
+    	}
+    	catch (Exception ex) {
+    		return "Error Updating the Augment: " + ex.toString();
+    	}
+    	return "Augment succesfully Updated! (id = " + aug.getId() + ")";
+	}
+    
     @RequestMapping(value=AugmentSvcApi.AUGMENT_DELETE_PATH, method=RequestMethod.GET)
     public @ResponseBody String deleteAugment(@PathVariable Long id) {//TODO figure out accepting the id
     	Augment aug = augmentDao.findOne(id);

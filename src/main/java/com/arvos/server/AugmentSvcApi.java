@@ -16,6 +16,7 @@ public interface AugmentSvcApi {
 	public static final String AUGMENT_SEARCH_PATH = "/augments/search";
 	
 	public static final String AUGMENT_CREATE_PATH = "/augment/create";
+	public static final String AUGMENT_UPDATE_PATH = "/augment/update/{id}";
 	public static final String AUGMENT_DELETE_PATH = "/augment/delete/{id}";
 
 	@GET(AUGMENT_TEST_PATH)
@@ -30,6 +31,9 @@ public interface AugmentSvcApi {
 	
 	@GET(AUGMENT_CREATE_PATH)
 	public String createAugment(String name);
+	
+	@GET(AUGMENT_UPDATE_PATH)
+	public String updateAugment(Long id, double lat, double lon, double alt, double azi, String ver, String plat, String dkey);
 
 	@GET(AUGMENT_DELETE_PATH)
 	public String deleteAugment(Long id);
