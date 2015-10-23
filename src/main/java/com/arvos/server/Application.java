@@ -33,19 +33,19 @@ public class Application extends SpringBootServletInitializer implements Command
     @Override
     public void run(String... strings) throws Exception {
         // save a couple of augments
-    	augmentDao.save(new Augment("Jack", "Augment1"));
-    	augmentDao.save(new Augment("Chloe", "Augment2"));
-    	augmentDao.save(new Augment("Kim", "Augment3"));
-    	augmentDao.save(new Augment("David", "Augment4"));
-    	augmentDao.save(new Augment("Michelle", "Augment5"));
+    	augmentDao.save(new Augment("Aug1", "Augment1"));
+    	augmentDao.save(new Augment("Aug2", "Augment2"));
+    	augmentDao.save(new Augment("Aug3", "Augment3"));
+    	augmentDao.save(new Augment("Aug3", "Augment4"));
+    	augmentDao.save(new Augment("Aug4", "Augment5"));
 
     	
 
-    	directoryDao.save(new Directory("Jack"));
-    	directoryDao.save(new Directory("Chloe"));
-    	directoryDao.save(new Directory("Kim"));
-    	directoryDao.save(new Directory("David"));
-    	directoryDao.save(new Directory("Michelle"));
+    	directoryDao.save(new Directory("dir1"));
+    	directoryDao.save(new Directory("dir2"));
+    	directoryDao.save(new Directory("dir3"));
+    	directoryDao.save(new Directory("dir4"));
+    	directoryDao.save(new Directory("dir5"));
     	
     	
         // fetch all augments
