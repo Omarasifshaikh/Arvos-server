@@ -1,5 +1,7 @@
 package com.arvos.server.model;
 
+import java.net.URI;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -184,4 +186,4 @@ public class Directory {
 	
 }
 
-//TODO - Establish a one tomany relationship between directory and augments...
+//TODO - Establish a one to many relationship between directory and augments...

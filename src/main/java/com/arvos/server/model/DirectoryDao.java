@@ -1,5 +1,6 @@
 package com.arvos.server.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,4 +11,5 @@ public interface DirectoryDao extends CrudRepository<Directory, Long> {
 	
 	  public Directory findByName(String name);
 	  public List<Directory> findAll();
+	  public List<Directory> findAllByName(String name);
 }
